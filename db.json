@@ -1,0 +1,38 @@
+{
+  "procedureRequests": [
+    {
+      "id": "1",
+      "consultationId": 37,
+      "animalId": "eg9rK8q-C0VULdTUXgpmg",
+      "procedureSettingsId": 82,
+      "type": "parasitology",
+      "text": "Suspeita de alteração metabólica, jejum de 8h.",
+      "procedureSettings": {
+        "id": 82,
+        "name": "Glicose",
+        "price": 45.0,
+        "status": "active"
+      }
+    },
+    {
+      "id": "2",
+      "consultationId": 37,
+      "animalId": "eg9rK8q-C0VULdTUXgpmg",
+      "procedureSettingsId": 91,
+      "type": "virology",
+      "text": "Avaliação pré-cirúrgica de rotina.",
+      "procedureSettings": {
+        "id": 91,
+        "name": "Hemograma completo",
+        "price": 60.0,
+        "status": "active"
+      }
+    }
+  ],
+  "procedimentosDisponiveis": [
+    { "id": 82, "nome": "Glicose", "preco": 45.0, "status": "active" },
+    { "id": 91, "nome": "Hemograma completo", "preco": 60.0, "status": "active" },
+    { "id": 105, "nome": "Ultrassom abdominal", "preco": 120.0, "status": "active" },
+    { "id": 118, "nome": "Raio-X torácico", "preco": 95.0, "status": "active" }
+  ]
+}
