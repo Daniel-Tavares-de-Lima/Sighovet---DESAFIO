@@ -25,12 +25,12 @@ export interface CriarRequisicaoEntrada{
     procedimentoConfigId: number;
     tipo: string;
     texto: string;
-    procedimentoConfig: ConfiguracaoProcedimento; 
+    procedimentoConfig: ConfiguracaoProcedimento; // Envia o objeto inteiro para o json-server salvar junto e facilitar a exibição no server
 }
 
 
 //--Dados padrões para atualizar uma requisição de exame e procedimento
 export interface AtualizarRequisicaoEntrada{
     id: string;
-    data: Partial<CriarRequisicaoEntrada>;
+    data: Partial<CriarRequisicaoEntrada>; // Torna todos os campos opcionais para atualizar apenas o que foi alterado
 }

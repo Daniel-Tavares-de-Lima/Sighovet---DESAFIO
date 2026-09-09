@@ -1,30 +1,30 @@
 {
-  "procedureRequests": [
+  "requisicoes": [
     {
       "id": "1",
-      "consultationId": 37,
+      "consultaId": 37,
       "animalId": "eg9rK8q-C0VULdTUXgpmg",
-      "procedureSettingsId": 82,
-      "type": "parasitology",
-      "text": "Suspeita de alteração metabólica, jejum de 8h.",
-      "procedureSettings": {
+      "procedimentoConfigId": 82,
+      "tipo": "parasitology",
+      "texto": "Suspeita de alteração metabólica, jejum de 8h.",
+      "procedimentoConfig": {
         "id": 82,
-        "name": "Glicose",
-        "price": 45.0,
+        "nome": "Glicose",
+        "preco": 45.0,
         "status": "active"
       }
     },
     {
       "id": "2",
-      "consultationId": 37,
+      "consultaId": 37,
       "animalId": "eg9rK8q-C0VULdTUXgpmg",
-      "procedureSettingsId": 91,
-      "type": "virology",
-      "text": "Avaliação pré-cirúrgica de rotina.",
-      "procedureSettings": {
+      "procedimentoConfigId": 91,
+      "tipo": "virology",
+      "texto": "Avaliação pré-cirúrgica de rotina.",
+      "procedimentoConfig": {
         "id": 91,
-        "name": "Hemograma completo",
-        "price": 60.0,
+        "nome": "Hemograma completo",
+        "preco": 60.0,
         "status": "active"
       }
     }
