@@ -55,6 +55,20 @@
         "status": "active"
       },
       "id": "mvBfXtzGSq4"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "118",
+      "tipo": "exame",
+      "texto": "Criação atualizado",
+      "procedimentoConfig": {
+        "id": "118",
+        "nome": "Raio-X torácico",
+        "preco": 95,
+        "status": "active"
+      },
+      "id": "K5EoV8x5F3Y"
     }
   ],
   "procedimentosDisponiveis": [
