@@ -1,6 +1,6 @@
 "use client";
 import { useAtualizarRequisicao, useCriarRequisicao, useRemoverRequisicao, useRequisicoes } from "@/hooks/useRequisicoes";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { useState } from "react";
 import ProcedureList from "./ProcedureList";
 import ProcedureModal from "./ProcedureModal";
@@ -48,13 +48,26 @@ export default function ProcedureRequest() {
       <ProcedureList
         requisicoes={data ?? []}
         aoEditar={abrirParaEditar}
-        aoExcluir={(id) => removerRequisicao.mutate(id)}
+        aoExcluir={(id) =>
+          removerRequisicao.mutate(id, {
+            onError: () => message.error("Não foi possível excluir a requisição."),
+          })
+        }
       />
 
       <ProcedureModal
-        aberto={modalAberto} fechar={() => setModalAberto(false)} requisicaoAtual={requisicaoAtual}
-        salvar={(dados) => criarRequisicao.mutate(dados)}
-        atualizar={(id, dados) => atualizarRequisicao.mutate({id, data: dados})}
+        aberto={modalAberto}
+        fechar={() => setModalAberto(false)}
+        requisicaoAtual={requisicaoAtual}
+        salvar={(dados) => criarRequisicao.mutate(dados, {
+            onError: () => message.error("Não foi possível criar a requisição."),
+          })
+        }
+        atualizar={(id, dados) => atualizarRequisicao.mutate(
+            { id, data: dados },
+            { onError: () => message.error("Não foi possível atualizar a requisição.") }
+          )
+        }
       />
     </div>
   );
