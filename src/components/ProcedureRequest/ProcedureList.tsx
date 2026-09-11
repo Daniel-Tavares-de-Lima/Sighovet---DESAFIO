@@ -1,5 +1,6 @@
 import { RequisicaoProcedimento } from "@/app/types/procedure";
-import { Button, Popconfirm } from "antd";
+import { Button, Empty, Popconfirm, Space, Tag } from "antd";
+import { FileTextOutlined } from "@ant-design/icons";
 
 type Props = {
     requisicoes: RequisicaoProcedimento[];
@@ -8,28 +9,59 @@ type Props = {
 }
 
 export default function ProcedureList({ requisicoes, aoEditar, aoExcluir }: Props) {
-    if(requisicoes.length === 0){
-        return <p>Nenhuma requisição cadastrada.</p>
+    if (requisicoes.length === 0) {
+        return (
+            <div className="card-suave p-8 text-center">
+                <Empty
+                    image={<FileTextOutlined style={{ fontSize: 48, color: '#9aa39c' }} />}
+                    description="Nenhuma requisição ainda"
+                />
+            </div>
+        );
     }
 
-    return(
-        <ul className="flex flex-col gap-3">
+    return (
+        <div className="flex flex-col gap-3">
             {requisicoes.map((requisicao) => (
-                <li key={requisicao.id} className="border rounded-lg p-3 flex justify-between items-start">
-                    <div>
-                        <strong>{requisicao.procedimentoConfig.nome}</strong>
-                        <p className="text-sm text-gray-600">{requisicao.texto}</p>
+                <div
+                    key={requisicao.id}
+                    className="card-suve p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-shadow hover:shadow-md"
+                >
+                    <div className="flex items-start gap-3">
+                        <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#e6f4ec] text-[#2f855a] shrink-0">
+                            <FileTextOutlined />
+                        </span>
+                        <div className="flex flex-col">
+                            <div className="flex items-center gap-2">
+                                <strong className="text-[#1f2a24]">{requisicao.procedimentoConfig.nome}</strong>
+                                <Tag color="green" className="m-0 rounded-md">exame</Tag>
+                            </div>
+                            <p className="text-muted text-sm m-0 mt-1">
+                                {requisicao.texto}
+                            </p>
+                            <span className="text-xs text-muted m-0">
+                                ID: {requisicao.id}
+                            </span>
+                        </div>
                     </div>
 
-                    <div className="flex gap-2">
-                        <Button onClick={() => aoEditar(requisicao)}>Editar</Button>
-
-                        <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => aoExcluir(requisicao.id)} okText="Sim" cancelText="Não">
-                            <Button danger>Excluir</Button>
+                    <Space size="small">
+                        <Button type="text" onClick={() => aoEditar(requisicao)} className="text-[#2f855a] border border-[#c6e5d4] hover:bg-[#e6f4ec] rounded-lg">
+                            Editar
+                        </Button>
+                        <Popconfirm
+                            title="Tem certeza que deseja excluir?"
+                            onConfirm={() => aoExcluir(requisicao.id)}
+                            okText="Sim"
+                            cancelText="Não"
+                        >
+                            <Button type="text" danger className="rounded-lg border border-[#f5c2c0]">
+                                Excluir
+                            </Button>
                         </Popconfirm>
-                    </div>
-                </li>
+                    </Space>
+                </div>
             ))}
-        </ul>
-    )
+        </div>
+    );
 }

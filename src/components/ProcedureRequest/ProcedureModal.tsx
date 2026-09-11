@@ -1,9 +1,10 @@
 "use client";
 import { CriarRequisicaoEntrada, RequisicaoProcedimento } from "@/app/types/procedure";
 import { useProcedimentosDisponiveis } from "@/hooks/useRequisicoes";
-import { Button, Form, Input, Modal, Select } from "antd";
+import { Button, Form, Input, Modal, Select, Spin } from "antd";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { FileTextOutlined } from "@ant-design/icons";
 
 
 type Props = {
@@ -11,10 +12,9 @@ type Props = {
     fechar: () => void;
     salvar: (dados: CriarRequisicaoEntrada) => void;
     atualizar: (id: string, dados: Partial<CriarRequisicaoEntrada>) => void;
-    requisicaoAtual?: RequisicaoProcedimento | null; //-- se vier preenchddo é edição
+    requisicaoAtual?: RequisicaoProcedimento | null;
 }
 
-//--Formato dos campos do formulário de requisição de exame e procedimento
 type CamposFormulario = {
     procedimentoConfigId: number;
     texto: string;
@@ -22,11 +22,9 @@ type CamposFormulario = {
 
 
 export default function ProcedureModal({ aberto, fechar, salvar, atualizar, requisicaoAtual }: Props){
-    const {data: procedimentos} = useProcedimentosDisponiveis();
-    const edicao = requisicaoAtual ? true : false; //--Se vier preenchido é edição, senão é criação
+    const {data: procedimentos, isLoading} = useProcedimentosDisponiveis();
+    const edicao = requisicaoAtual ? true : false;
 
-
-    //-Criando o formulario 
     const {control, handleSubmit, register, reset} = useForm<CamposFormulario>({
         defaultValues: {
             procedimentoConfigId: 0,
@@ -34,7 +32,6 @@ export default function ProcedureModal({ aberto, fechar, salvar, atualizar, requ
         }
     });
 
-    //--Se o modal for aberto, preenche os campos do formulário com os dados da requisição atual (se tivier)
     useEffect(() => {
         if(aberto){
             reset({
@@ -44,18 +41,12 @@ export default function ProcedureModal({ aberto, fechar, salvar, atualizar, requ
         }
     }, [aberto, requisicaoAtual, reset]);
 
-
-    //--Função para enviar os dados do formulário
     function enviar(campos: CamposFormulario){
-
-        //-pega a lista procedimentos e procura o procedimento que o id é igual ao que o usário escolheu 
         const procedimentoEscolhido = procedimentos?.find(
             ((p) => p.id === campos.procedimentoConfigId)
         );
-        
-        //--Procedimento não encontrado
+
         if(!procedimentoEscolhido){
-            alert("Procedimento inválido");
             return;
         }
 
@@ -67,58 +58,88 @@ export default function ProcedureModal({ aberto, fechar, salvar, atualizar, requ
             })
         }else{
             salvar({
-                consultaId: 1, //--Consulta fixa 
-                animalId: "1", //--Animal fixo  
+                consultaId: 1,
+                animalId: "1",
                 procedimentoConfigId: procedimentoEscolhido.id,
-                tipo: "exame", //--Tipo fixo 
+                tipo: "exame",
                 texto: campos.texto,
-                procedimentoConfig: procedimentoEscolhido //--Envia o objeto inteiro para o json-server salvar junto e facilitar a exibição no server
+                procedimentoConfig: procedimentoEscolhido
             })
         }
 
-        reset(); //--Limpa os campos do formulário
-        fechar(); //--Fecha o modal
+        reset();
+        fechar();
     }
 
     return (
     <Modal
-      title={edicao ? "Editar requisição" : "Nova requisição"}
-      open={aberto}
-      onCancel={fechar}
-      footer={null}
+        title={
+            <span className="flex items-center gap-2 text-[#1f2a24]">
+                <FileTextOutlined style={{ color: '#2f855a' }} />
+                {edicao ? "Editar requisição" : "Nova requisição"}
+            </span>
+        }
+        open={aberto}
+        onCancel={fechar}
+        footer={null}
+        destroyOnHidden
+        width={520}
+        className="procedure-modal"
+        styles={{
+            body: { maxHeight: '70vh', overflowY: 'auto', padding: '20px 24px' }
+        }}
     >
-      <Form layout="vertical" onFinish={handleSubmit(enviar)}>
-        <Form.Item label="Procedimento" required>
-          <Controller
-            name="procedimentoConfigId"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Select
-                {...field}
-                placeholder="Selecione um exame"
-                options={procedimentos?.map((p) => ({ label: p.nome, value: p.id }))}
-              />
-            )}
-          />
-        </Form.Item>
+        <Form layout="vertical" onFinish={handleSubmit(enviar)} className="mt-2">
+            <Form.Item
+                label="Procedimento"
+                required
+                className="mb-4"
+            >
+                <Controller
+                    name="procedimentoConfigId"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                        <Select
+                            {...field}
+                            placeholder="Selecione um exame"
+                            loading={isLoading}
+                            className="procedure-select"
+                            options={procedimentos?.map((p) => ({ label: p.nome, value: p.id }))}
+                        />
+                    )}
+                />
+            </Form.Item>
 
-        <Form.Item label="Justificativa" required>
-          <Controller
-            name="texto"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Input.TextArea {...field} rows={3} placeholder="Descreva a justificativa" />
-            )}
-          />
-        </Form.Item>
+            <Form.Item
+                label="Justificativa"
+                required
+                className="mb-5"
+            >
+                <Controller
+                    name="texto"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                        <Input.TextArea
+                            {...field}
+                            rows={3}
+                            placeholder="Descreva a justificativa"
+                            className="procedure-textarea"
+                        />
+                    )}
+                />
+            </Form.Item>
 
-        <Button type="primary" htmlType="submit">
-          Salvar
-        </Button>
-      </Form>
+            <div className="flex justify-end gap-2 pt-2">
+                <Button onClick={fechar} className="rounded-lg">
+                    Cancelar
+                </Button>
+                <Button type="primary" htmlType="submit" className="rounded-lg">
+                    Salvar
+                </Button>
+            </div>
+        </Form>
     </Modal>
   )
 }
-

@@ -61,7 +61,7 @@
       "animalId": "1",
       "procedimentoConfigId": "118",
       "tipo": "exame",
-      "texto": "Criação atualizado",
+      "texto": "Criação atualizadoaa",
       "procedimentoConfig": {
         "id": "118",
         "nome": "Raio-X torácico",
@@ -69,6 +69,76 @@
         "status": "active"
       },
       "id": "K5EoV8x5F3Y"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "105",
+      "tipo": "exame",
+      "texto": "Requisição atualizada",
+      "procedimentoConfig": {
+        "id": "105",
+        "nome": "Ultrassom abdominal",
+        "preco": 120,
+        "status": "active"
+      },
+      "id": "qOaC2lzkjJY"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "105",
+      "tipo": "exame",
+      "texto": "teste",
+      "procedimentoConfig": {
+        "id": "105",
+        "nome": "Ultrassom abdominal",
+        "preco": 120,
+        "status": "active"
+      },
+      "id": "ZS8ygwqbgjY"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "91",
+      "tipo": "exame",
+      "texto": "test",
+      "procedimentoConfig": {
+        "id": "91",
+        "nome": "Hemograma completo",
+        "preco": 60,
+        "status": "active"
+      },
+      "id": "Eo3jEQIgfnw"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "82",
+      "tipo": "exame",
+      "texto": "test",
+      "procedimentoConfig": {
+        "id": "82",
+        "nome": "Glicose",
+        "preco": 45,
+        "status": "active"
+      },
+      "id": "ps-pgjtks04"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "91",
+      "tipo": "exame",
+      "texto": "Criação requisição atualizado",
+      "procedimentoConfig": {
+        "id": "91",
+        "nome": "Hemograma completo",
+        "preco": 60,
+        "status": "active"
+      },
+      "id": "qBdfPsJjjZI"
     }
   ],
   "procedimentosDisponiveis": [
