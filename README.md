@@ -18,11 +18,15 @@ npm run dev
 
 Acesse `http://localhost:3000`. Confirme que `.env.local` tem `NEXT_PUBLIC_API_URL=http://localhost:3001`.
 
-## Screenshots
+## Prints
 
+### Listagem
 ![Listagem de requisições](public/prints/listagem.png)
+### Criar
 ![Criação de requisição](public/prints/criar.png)
+### Editar
 ![Edição de requisição](public/prints/editar.png)
+### Excluir
 ![Exclusão de requisição](public/prints/excluir.png)
 
 ## Vídeo de demonstração
