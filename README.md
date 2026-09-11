@@ -20,10 +20,10 @@ Acesse `http://localhost:3000`. Confirme que `.env.local` tem `NEXT_PUBLIC_API_U
 
 ## Screenshots
 
-![Listagem de requisições](public/screenshots/listagem.png)
-![Criação de requisição](public/screenshots/criar.png)
-![Edição de requisição](public/screenshots/editar.png)
-![Exclusão de requisição](public/screenshots/excluir.png)
+![Listagem de requisições](public/prints/listagem.png)
+![Criação de requisição](public/prints/criar.png)
+![Edição de requisição](public/prints/editar.png)
+![Exclusão de requisição](public/prints/excluir.png)
 
 ## Vídeo de demonstração
 
