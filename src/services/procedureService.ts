@@ -23,7 +23,7 @@ export async function criarRequisicao(data: CriarRequisicaoEntrada): Promise<Req
 
 //Atualiza uma requisição de exame e procedimento existente
 export async function atualizarRequisicao(requisicao: AtualizarRequisicaoEntrada): Promise<RequisicaoProcedimento> {
-    const resposta = await api.patch<RequisicaoProcedimento>(`/requisicoes${requisicao.id}`, requisicao.data);
+    const resposta = await api.patch<RequisicaoProcedimento>(`/requisicoes/${requisicao.id}`, requisicao.data);
     return resposta.data;
 }
 

@@ -33,7 +33,7 @@
       "animalId": "1",
       "procedimentoConfigId": "118",
       "tipo": "exame",
-      "texto": "teste",
+      "texto": "teste atualizadop",
       "procedimentoConfig": {
         "id": "118",
         "nome": "Raio-X torácico",
@@ -41,6 +41,20 @@
         "status": "active"
       },
       "id": "5qPBwPPpO_c"
+    },
+    {
+      "consultaId": 1,
+      "animalId": "1",
+      "procedimentoConfigId": "82",
+      "tipo": "exame",
+      "texto": "teste atualizado",
+      "procedimentoConfig": {
+        "id": "82",
+        "nome": "Glicose",
+        "preco": 45,
+        "status": "active"
+      },
+      "id": "mvBfXtzGSq4"
     }
   ],
   "procedimentosDisponiveis": [
