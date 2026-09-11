@@ -13,17 +13,21 @@ export default function ProcedureList({ requisicoes, aoEditar, aoExcluir }: Prop
     }
 
     return(
-        <ul>
+        <ul className="flex flex-col gap-3">
             {requisicoes.map((requisicao) => (
-                <li key={requisicao.id}>
-                    <strong>{requisicao.procedimentoConfig.nome}</strong>
-                    <p>{requisicao.texto}</p>
+                <li key={requisicao.id} className="border rounded-lg p-3 flex justify-between items-start">
+                    <div>
+                        <strong>{requisicao.procedimentoConfig.nome}</strong>
+                        <p className="text-sm text-gray-600">{requisicao.texto}</p>
+                    </div>
 
-                    <Button onClick={() => aoEditar(requisicao)}>Editar</Button>
+                    <div className="flex gap-2">
+                        <Button onClick={() => aoEditar(requisicao)}>Editar</Button>
 
-                    <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => aoExcluir(requisicao.id)} okText="Sim" cancelText="Não">
-                        <Button danger>Excluir</Button>
-                    </Popconfirm>
+                        <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => aoExcluir(requisicao.id)} okText="Sim" cancelText="Não">
+                            <Button danger>Excluir</Button>
+                        </Popconfirm>
+                    </div>
                 </li>
             ))}
         </ul>

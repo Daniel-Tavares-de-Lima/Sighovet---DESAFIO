@@ -37,8 +37,8 @@ export default function ProcedureRequest() {
     }
 
     return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <div className="m-4">
+      <div className="flex justify-between items-center mb-4">
         <h2>Requisições</h2>
         <Button type="primary" onClick={abrirParaCriar}>
           + Nova requisição
